@@ -19,15 +19,15 @@ Follow the instructions from the [user manual](https://magazine.odroid.com/wp-co
 A network connection is required to complete the first-time setup after flashing the distro. As `root`, do the following
 
 In `nano /etc/network/interfaces`, add the following lines  
-`auto wlan0    `
+`auto wlan0`
 
-`allow-hotplug wlan0    `
+`allow-hotplug wlan0`
 
-`iface wlan0 inet dhcp    `
+`iface wlan0 inet dhcp`
 
 `wireless-power off`
 
-`wpa-ssid "FreeWifi1234"    `
+`wpa-ssid "FreeWifi1234"`
 
 `wpa-psk "748748748"`
 
@@ -35,7 +35,7 @@ In `nano /etc/network/interfaces`, add the following lines
 
 The minimal distribution only have `root` setup. To add our own user account, `odroid`, use the following commands
 
-`adduser odroid    `
+`adduser odroid`
 
 `adduser odroid sudo`
 
