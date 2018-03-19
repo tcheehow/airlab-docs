@@ -53,6 +53,12 @@ Next, we need the MAVROS package to interface with autopilots using MAVLink prot
 
 TODO
 
+### Install Cartographer ROS
+
+Follow the instructions on [Cartographer ROS Wiki](https://google-cartographer-ros.readthedocs.io/en/latest/) to build and install from source.
+
+Cartographer requires the latest version of ninja, refer to the following [link](https://www.claudiokuenzler.com/blog/756/install-newer-ninja-build-tools-ubuntu-14.04-trusty#.Wq927icRVhE) for help if a ninja build error occurs.
+
 ## References
 
 1. [https://mzahana.gitbooks.io/indoor-nav-at-risclab/content/](https://mzahana.gitbooks.io/indoor-nav-at-risclab/content/)
