@@ -59,6 +59,8 @@ Follow the instructions on [Cartographer ROS Wiki](https://google-cartographer-r
 
 Cartographer requires the latest version of ninja, refer to the following [link](https://www.claudiokuenzler.com/blog/756/install-newer-ninja-build-tools-ubuntu-14.04-trusty#.Wq927icRVhE) for help if a ninja build error occurs.
 
+If an Eigen3 build related error occur, run the following command `sudo cp /usr/share/cmake-2.8/Modules/FindEigen3.cmake /usr/share/cmake-3.2/Modules/`
+
 ## References
 
 1. [https://mzahana.gitbooks.io/indoor-nav-at-risclab/content/](https://mzahana.gitbooks.io/indoor-nav-at-risclab/content/)
