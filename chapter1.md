@@ -24,7 +24,7 @@ refer to the full list at Cartographer ROS Wiki
 
 ### Interpreting Cartographer Output
 
-![](/assets/gazebo-cartographer-px4-rqt.png)Cartographer subscribes to /imu and /scan for map building and trajectory generation. The trajectory is published in /trajectory_nodelist and the robot pose at a /tf with parent\_frame_\_id: map and child\_frame\_id: base\_link 
+![](/assets/gazebo-cartographer-px4-rqt.png)Cartographer subscribes to /imu and /scan for map building and trajectory generation. The trajectory is published in /trajectory\__node\_list and the robot pose at a /tf with parent\_frame_\_id: map and child\_frame\_id: base\_link. The robot pose is extracted by listening to the latest /tf.   
 
 ### Tuning PX4 Parameters
 
