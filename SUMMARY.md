@@ -1,6 +1,6 @@
 # Summary
 
-* [Introduction](README.md)
+* [ODROID](README.md)
 * [Cartographer](chapter1.md)
 * [MAVROS](mavros.md)
 

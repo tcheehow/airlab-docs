@@ -31,6 +31,8 @@ In `nano /etc/network/interfaces`, add the following lines
 
 `wpa-psk "748748748"`
 
+There seems to be an issue between ODRIOD-XU4 and WiFi Module 3, follow the instruction [here](https://adamscheller.com/systems-administration/rtl8192cu-fix-wifi/) to attempt to fix it.
+
 ### User Account Setup
 
 The minimal distribution only have `root` setup. To add our own user account, `odroid`, use the following commands
@@ -63,13 +65,11 @@ If an Eigen3 build related error occur, run the following command `sudo cp /usr/
 
 ### Catkin WS Overlaying
 
-ROS, MAVROS and Cartographer each have a workspace, and they need to be sourced and built in the correct order. 
+ROS, MAVROS and Cartographer each have a workspace, and they need to be sourced and built in the correct order.
 
 source /opt/ros/indigo/setup.bash before calling catkin_make\_isolated on Cartographer. _
 
 and source cartographer before catkin_make on project\_ws_
-
-
 
 ## References
 
