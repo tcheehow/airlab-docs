@@ -61,6 +61,16 @@ Cartographer requires the latest version of ninja, refer to the following [link]
 
 If an Eigen3 build related error occur, run the following command `sudo cp /usr/share/cmake-2.8/Modules/FindEigen3.cmake /usr/share/cmake-3.2/Modules/`
 
+### Catkin WS Overlaying
+
+ROS, MAVROS and Cartographer each have a workspace, and they need to be sourced and built in the correct order. 
+
+source /opt/ros/indigo/setup.bash before calling catkin_make\_isolated on Cartographer. _
+
+and source cartographer before catkin_make on project\_ws_
+
+
+
 ## References
 
 1. [https://mzahana.gitbooks.io/indoor-nav-at-risclab/content/](https://mzahana.gitbooks.io/indoor-nav-at-risclab/content/)
