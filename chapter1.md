@@ -12,19 +12,26 @@ For cartographer to work with imu information, tf information must be sent. The 
 
 ### Tuning Cartographer
 
-Due to the sparsity of the feature, there is a need to tune the cartographer parameters for real-time localisation and quality SLAM.
+Due to the sparsity of the feature, there is a need to tune the cartographer parameters for real-time localisation and quality SLAM. The detailed description of each parameters can be found in [Cartographer Configuration Wiki](http://google-cartographer.readthedocs.io/en/latest/configuration.html).
 
-It includes translation\_weight
+Based on the Gazebo-MAVROS SITL testing, tuning the following parameters \(non-exhaustive\) improves SLAM performance,
 
-rotation\_weight
+* TRAJECTORY\_BUILDER\_2D.num\_accumulated\_range\_data = 5
+* TRAJECTORY\_BUILDER\_2D.ceres\_scan\_matcher.translation\_weight = 5
+* TRAJECTORY\_BUILDER\_2D.ceres\_scan\_matcher.translation\_weight = 
+* POSE\_GRAPH.optimize\_every\_n\_data = 1
+* POSE\_GRAPH.optimizattion\_problem.acceleration\_weight = 0.1 
 
-resolution
+and reduces latency,
 
-refer to the full list at Cartographer ROS Wiki
+* TRAJECTORY\_BUILDER\_2D.voxel\_filter\_size = 0.1
+* TRAJECTORY\_BUILDER\_2D.submap\_resolution = 0.1
+
+The full list of tunable parameters for low latency can be found on [Cartographer ROS Wiki](http://google-cartographer-ros.readthedocs.io/en/latest/tuning.html#low-latency)
 
 ### Interpreting Cartographer Output
 
-![](/assets/gazebo-cartographer-px4-rqt.png)Cartographer subscribes to /imu and /scan for map building and trajectory generation. The trajectory is published in /trajectory\__node\_list and the robot pose at a /tf with parent\_frame_\_id: map and child\_frame\_id: base\_link. The robot pose is extracted by listening to the latest /tf.   
+![](/assets/gazebo-cartographer-px4-rqt.png)Cartographer subscribes to /imu and /scan for map building and trajectory generation. The trajectory is published in /trajectory\__node\_list and the robot pose at a /tf with parent\_frame_\_id: map and child\_frame\_id: base\_link. The robot pose is extracted by listening to the latest /tf.
 
 ### Tuning PX4 Parameters
 

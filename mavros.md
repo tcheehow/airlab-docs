@@ -6,7 +6,5 @@ The architecture lineage of MAVROS and PX4 led to the adoption of differing fram
 
 ### MAVROS Frame Convention
 
-Position estimates and setpoints are sent using ROS PoseStamped messages. The message contain a header, position and orientation information. \(?\) Weirdly, the pose follows the earth-fixed ENU reference frame while the orientation follows the body-fixed NED. 
-
-
+Position estimates and setpoints are sent using ROS `PoseStamped `messages. The message contain a header, position and orientation information. \(?\) Weirdly, the pose follows the earth-fixed ENU reference frame while the orientation follows the body-fixed NED.
 
