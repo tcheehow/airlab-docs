@@ -10,9 +10,13 @@ Position estimates and setpoints are sent using ROS `PoseStamped`messages. The m
 
 ### RVIZ/Cartographer Frame
 
-The /tf and /odom estimates are earth-fixed ENU, that is initalised based on the absolution alignment with the initial body-fixed ENU frame of the rplidar. 
+The /tf and /odom estimates from Cartographer are earth-fixed ENU, that is initalised based on the absolute alignment with the initial body-fixed ENU frame of the rplidar.
+
+Hence, if the r 
 
 ### Navigation/ Base Local Planner Frame
 
 The /cmd\_vel msg is published in body-fixed \(base\_link\) ENU, and needs to be rotated to earth-fixed ENU before being published to the /mavros/setpoint\_velocity/cmd\_vel topic.
+
+
 

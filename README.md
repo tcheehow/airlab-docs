@@ -67,9 +67,7 @@ If an Eigen3 build related error occur, run the following command `sudo cp /usr/
 
 ROS, MAVROS and Cartographer each have a workspace, and they need to be sourced and built in the correct order.
 
-source /opt/ros/indigo/setup.bash before calling catkin_make\_isolated on Cartographer. _
-
-and source cartographer before catkin_make on project\_ws_
+`source /opt/ros/indigo/setup.bash` before calling `catkin_make_isolated --install --use-ninja` on Cartographer._ _In addition, Cartographer is installed in the `install_isolated` directory, and be used by adding `source ~/cartographer_ws/install_isolated/setup.bash ` to `~/.bashrc`. To make changes formally, you should modify the source code at `~/cartographer_ws/src` directory and rerun `catkin_make_isolated --install --use-ninja ` to formally make the changes. This is however a cumbersome process during rapid development and code iteration. The alternative is to the `source ~/cartographer_ws/devel_isolated/cartographer_ros/setup.bash `instead. Then, changes to the source code is directly effected.
 
 ## References
 
