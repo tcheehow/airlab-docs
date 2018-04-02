@@ -53,9 +53,13 @@ Next, we need the MAVROS package to interface with autopilots using MAVLink prot
 
 ### Install OpenCV and more
 
-Follow the same instruction from [RISC Lab.](https://mzahana.gitbooks.io/indoor-nav-at-risclab/content/companion_computer_odroid_xu4_setup.html#install-opencv)
+Follow the instruction on [OpenCV documentation](https://docs.opencv.org/2.4/doc/tutorials/introduction/linux_install/linux_install.html#linux-installation). 
 
-You might need to install `libxv-dev libxvidcore-dev libx264 libgtk-3-dev ffmpeg libav-tools x264 x265 `  in addition to the existing list of OPENCV dependencies.
+In Step 2. of the building OpenCV, 
+
+```
+cmake -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr/local -DWITH_OPENGL=ON -DWITH_V4L=ON -DWITH_TBB=ON -DBUILD_TBB=ON -DENABLE_VFPV3=ON -DENABLE_NEON=ON ..
+```
 
 ### Install Cartographer ROS
 
