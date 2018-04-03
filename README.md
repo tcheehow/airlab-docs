@@ -49,7 +49,7 @@ First, we need ROS to be installed on ODROID. Following the instructions on the 
 
 ### Install MAVROS
 
-Next, we need the MAVROS package to interface with autopilots using MAVLink protocol to ROS. Simply follow the instructions documented on [PX4 Dev Wiki](https://dev.px4.io/en/ros/mavros_installation.html) or [MAVROS GitHub](https://github.com/mavlink/mavros/tree/master/mavros#binary-installation-deb) for the binary installation of the `mavros` and `mavros-extra` package using `sudo apt-get install ros-kinetic-mavros ros-kinetic-mavros-extras `
+Next, we need the MAVROS package to interface with autopilots using MAVLink protocol to ROS. Simply follow the instructions documented on [PX4 Dev Wiki](https://dev.px4.io/en/ros/mavros_installation.html) or [MAVROS GitHub](https://github.com/mavlink/mavros/tree/master/mavros#binary-installation-deb) for the binary installation of the `mavros` and `mavros-extra` package using `sudo apt-get install ros-kinetic-mavros ros-kinetic-mavros-extras`
 
 ### Install OpenCV and more
 
