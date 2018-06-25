@@ -4,4 +4,5 @@
 * [Cartographer](chapter1.md)
 * [MAVROS](mavros.md)
 * [ROS Navigation Stack](ros-navigation-stack.md)
+* [Intel Edison](intel-edison.md)
 
