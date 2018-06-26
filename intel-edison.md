@@ -47,24 +47,58 @@ tmpfs              492016      0    492016   0% /tmp
 tmpfs               98404      0     98404   0% /run/user/1002
 ```
 
-### Free Up Root Partition
+### Free Up Home Partition
 
-Before proceeding to install ROS, we would need to free up more space on the home/root partition. To do so, run the following commands as root:
+Before proceeding to install ROS, we would need to free up more space on the home partition. To do so, run the following commands as root:
 
 ```
-//TODO:
+//make sure you log in as root, do not do this as edison user
+mv /usr/share/ /opt/.usr/
+ln -sf /opt/.usr/ /usr/share
+```
+
+If the process if done correct, perform `ls -l /usr/`and you should see similar results
+
+```
+root@jubilinux:~# ls -l /usr/
+total 44
+drwxr-xr-x  2 root root  20480 Apr  6  2017 bin
+drwxr-xr-x  2 root root   4096 Jul  7  2014 games
+drwxr-xr-x 36 root root   4096 Apr  5  2017 include
+drwxr-xr-x 40 root root   4096 Apr  6  2017 lib
+drwxrwsr-x 11 root staff  4096 Feb 17  2015 local
+drwxr-xr-x  2 root root   4096 Apr  6  2017 sbin
+lrwxrwxrwx  1 root root     13 Jan  1 00:37 share -> /opt/.usr/
+drwxr-xr-x  2 root root   4096 Jul  7  2014 src
+```
+
+Then, run `df -h` again to see the results of freeing up the partition
+
+```
+root@jubilinux:~# df -h
+Filesystem       Size  Used Avail Use% Mounted on
+/dev/root        1.4G  499M  817M  38% /
+devtmpfs         481M     0  481M   0% /dev
+tmpfs            481M     0  481M   0% /dev/shm
+tmpfs            481M  6.7M  474M   2% /run
+tmpfs            5.0M     0  5.0M   0% /run/lock
+tmpfs            481M     0  481M   0% /sys/fs/cgroup
+tmpfs            481M     0  481M   0% /tmp
+/dev/mmcblk0p10  1.3G  375M  917M  29% /home
+/dev/mmcblk0p7    32M  4.8M   28M  16% /boot
+tmpfs             97M     0   97M   0% /run/user/0
 ```
 
 ## One-Time Setup
 
 ### Network Configuration
 
-Run `wpa_passphrase your-ssid your-wifi-password` to generate a secure pks. Then, `cd /etc/network`  and edit the `cd /etc/network/interfaces`
+Run `wpa_passphrase your-ssid your-wifi-password` to generate a secure pks. Then, edit the network config by running `nano /etc/network/interfaces` 
 
 * edit the wpa-ssid to the network ssid
 * edit the wpa-pks to the encrypted psk generated earlier
 * uncomment `auto wlan0`
-* append `post-up iwconfig wlan0 power off `to disable power management that leads to occassional drop out.
+* append `post-up iwconfig wlan0 power off`to disable power management that leads to occassional drop out.
 * save, then run `ifup wlan0`as root
 
 The final copy should look similar to
@@ -84,11 +118,12 @@ iface wlan0 inet dhcp
     # For WPA
     wpa-ssid FreeWifi1234
     wpa-psk 75ffd9ac3a51c3a61cdb32613fe9b979ae6005d3051e71ad29667bd9d121b6dc
+    post-up iwconfig wlan0 power off
 ```
 
 ### Debian Update
 
-Modify the sources list at `/etc/apt/sources.list `to become
+Modify the sources list at `/etc/apt/sources.list`to become
 
 ```
 deb http://ftp.sg.debian.org/debian jessie main contrib non-free
@@ -127,7 +162,7 @@ dpkg-reconfigure locales # Select only en_US.UTF8 and select None as the default
 update-locale
 ```
 
-Update the `/etc/default/locale` file and ensure `LANG=en_US.UTF-8` and it uncommented out. Add `LC_ALL=C`. Then reboot.
+Update the `/etc/default/locale` file and ensure `LANG=en_US.UTF-8` and it is uncommented out. Add `LC_ALL=C`. Then reboot.
 
 Note that if you receive warning messages about missing or wrong languages this is likely to be due to the locale being forwarded when using SSH. Either ignore them or complete this step via the serial console by commenting out the SendEnv LANG LC\_\* line in the local /etc/ssh/ssh\_config file on your machine \(not the Edison\).
 
@@ -141,9 +176,7 @@ When done, `sudo dpkg-reconfigure tzdata`
 
 Finally, we are ready to install ROS and the necesary packages. As ROS packages for the Edison/Ubilinux don't exist we will have to build it from source. This process will take about 1.5 hours but most of it is just waiting for it to build.
 
-A script \(`ros-setups/intel-edison/install_ros.sh)`\) has been writen to automate the building and installation of ROS. Current testing has been copy-pasting line by line to the console. 
+A script \(`ros-setups/intel-edison/install_ros.sh)`\) has been writen to automate the building and installation of ROS. Current testing has been copy-pasting line by line to the console. Generally, the instructions are referenced from [Edison ROS Wiki](http://wiki.ros.org/wiki/edison) and [ROSberryPi Wiki](http://wiki.ros.org/ROSberryPi/Installing%20ROS%20Indigo%20on%20Raspberry%20Pi).
 
 If all went well you should have a ROS installation. Hook your Edison up to the Pixhawk and run a test. See this page for instructions: [https://pixhawk.org/peripherals/onboard\_computers/intel\_edison](https://pixhawk.org/peripherals/onboard_computers/intel_edison)
-
-
 
