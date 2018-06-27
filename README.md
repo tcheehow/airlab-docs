@@ -27,9 +27,9 @@ In `nano /etc/network/interfaces`, add the following lines
 
 `wireless-power off`
 
-`wpa-ssid "FreeWifi1234"`
+`wpa-ssid FreeWifi1234`
 
-`wpa-psk "748748748"`
+`wpa-psk 75ffd9ac3a51c3a61cdb32613fe9b979ae6005d3051e71ad29667bd9d121b6dc`
 
 There seems to be an issue between ODRIOD-XU4 and WiFi Module 3, follow the instruction [here](https://adamscheller.com/systems-administration/rtl8192cu-fix-wifi/) to attempt to fix it.
 

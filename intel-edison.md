@@ -1,6 +1,6 @@
 # Intel Edison Setup
 
-## Installing Jubilinux
+## Installing Jubilinux {#installing-jubilinux}
 
 ### Before Starting
 
@@ -47,7 +47,7 @@ tmpfs              492016      0    492016   0% /tmp
 tmpfs               98404      0     98404   0% /run/user/1002
 ```
 
-### Free Up Home Partition
+### Free Up Partition Space
 
 Before proceeding to install ROS, we would need to free up more space on the home partition. To do so, run the following commands as root:
 
@@ -55,6 +55,9 @@ Before proceeding to install ROS, we would need to free up more space on the hom
 //make sure you log in as root, do not do this as edison user
 mv /usr/share/ /opt/.usr/
 ln -sf /opt/.usr/ /usr/share
+
+mv /usr/include /opt/.usr/
+ln -sf /opt/.usr/ /usr/include
 ```
 
 If the process if done correct, perform `ls -l /usr/`and you should see similar results
@@ -89,11 +92,29 @@ tmpfs            481M     0  481M   0% /tmp
 tmpfs             97M     0   97M   0% /run/user/0
 ```
 
+Also, we would clear space in the root partition, by removing unnecessary docs, locales and man.
+
+Add the following to the file `/etc/dpkg/dpkg.cfg` to prevent installing docs, locales and man pages. You can also delete the contents of the folders `sudo rm -rf /usr/share/locale/*`, `sudo rm -rf /usr/share/man/*` and `sudo rm -rf /usr/share/doc/*`.
+
+```
+# /etc/dpkg/dpkg.conf.d/01_nodoc
+
+# Delete locales
+path-exclude=/usr/share/locale/*
+
+# Delete man pages
+path-exclude=/usr/share/man/*
+
+# Delete docs
+path-exclude=/usr/share/doc/*
+path-include=/usr/share/doc/*/copyright
+```
+
 ## One-Time Setup
 
 ### Network Configuration
 
-Run `wpa_passphrase your-ssid your-wifi-password` to generate a secure pks. Then, edit the network config by running `nano /etc/network/interfaces` 
+Run `wpa_passphrase your-ssid your-wifi-password` to generate a secure pks. Then, edit the network config by running `nano /etc/network/interfaces`
 
 * edit the wpa-ssid to the network ssid
 * edit the wpa-pks to the encrypted psk generated earlier
@@ -176,7 +197,86 @@ When done, `sudo dpkg-reconfigure tzdata`
 
 Finally, we are ready to install ROS and the necesary packages. As ROS packages for the Edison/Ubilinux don't exist we will have to build it from source. This process will take about 1.5 hours but most of it is just waiting for it to build.
 
-A script \(`ros-setups/intel-edison/install_ros.sh)`\) has been writen to automate the building and installation of ROS. Current testing has been copy-pasting line by line to the console. Generally, the instructions are referenced from [Edison ROS Wiki](http://wiki.ros.org/wiki/edison) and [ROSberryPi Wiki](http://wiki.ros.org/ROSberryPi/Installing%20ROS%20Indigo%20on%20Raspberry%20Pi).
+A script \(`ros-setups/intel-edison/install_ros.sh`\) has been writen to automate the building and installation of ROS. Current testing has been copy-pasting line by line to the console. ~~Generally, the instructions are referenced from ~~\[Edison ROS Wiki\]\(~~[~~http://wiki.ros.org/wiki/edison~~](http://wiki.ros.org/wiki/edison)~~\) and \[ROSberryPi Wiki\]\(~~[~~http://wiki.ros.org/ROSberryPi/Installing~~](http://wiki.ros.org/ROSberryPi/Installing)~~~~~~ ROS Indigo on Raspberry Pi\)~~.~~
+
+The ROS Kinetic instructions from [pennaerial ](https://raw.githubusercontent.com/pennaerial/ros-setups/master/intel-edison/install_kinetic_mavros.sh)works fine. For archival, the working line-by-line script is below:
+
+```
+# !/bin/bash
+# The following installation is based on: 
+# 1. http://wiki.ros.org/wiki/edison 
+# 2. http://wiki.ros.org/ROSberryPi/Installing%20ROS%20Indigo%20on%20Raspberry%20Pi
+# 3. https://raw.githubusercontent.com/pennaerial/ros-setups/master/intel-edison/install_kinetic_mavros.sh
+
+# 1. Update sources.list
+
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu jessie main" > /etc/apt/sources.list.d/ros-latest.list'
+
+# 2. Get ROS keys
+wget https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -O - | sudo apt-key add -
+
+# 3. Update the OS
+sudo apt-get -y update
+sudo apt-get -y upgrade
+
+# 4. Install required OS packages
+sudo apt-get -y install python-rosdep python-rosinstall-generator python-wstool python-rosinstall build-essential
+
+# 5. ROSDEP
+sudo rosdep init
+rosdep update
+
+# 6. Create catkin workspace
+
+mkdir ~/ros_catkin_ws
+cd ~/ros_catkin_ws
+
+# 7. Generate rosinstall
+rosinstall_generator ros_comm mavros --rosdistro kinetic --deps --wet-only --exclude roslisp --tar > kinetic-ros_comm-wet.rosinstall
+
+sudo wstool init src -j1 kinetic-ros_comm-wet.rosinstall
+while [ $? != 0 ]; do
+  echo "*** wstool - download failures, retrying ***"
+  sudo wstool update -t src -j1
+done
+
+# 8. rosdep install - Errors at the end may or may not be normal ***"
+cd ~/ros_catkin_ws
+#  Python errors after the following command are normal.
+rosdep install --from-paths src --ignore-src --rosdistro kinetic -y -q -r --os=debian:jessie
+
+# 9. Building ROS 
+sudo ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /home/ros/kinetic -j1
+
+sudo ln -sf /home/ros /opt/
+
+# 10. Updating .bashrc
+echo "source /home/ros/kinetic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+
+cd ~/ros_catkin_ws
+```
 
 If all went well you should have a ROS installation. Hook your Edison up to the Pixhawk and run a test. See this page for instructions: [https://pixhawk.org/peripherals/onboard\_computers/intel\_edison](https://pixhawk.org/peripherals/onboard_computers/intel_edison)
+
+### Post ROS Installation
+
+After installing ROS, the storage condition on the Edison should be similar to this.
+
+```
+edison@jubilinux:~/ros_catkin_ws$ df -h
+Filesystem       Size  Used Avail Use% Mounted on
+/dev/root        1.4G 1022M  294M  78% /
+devtmpfs         481M     0  481M   0% /dev
+tmpfs            481M     0  481M   0% /dev/shm
+tmpfs            481M  6.7M  474M   2% /run
+tmpfs            5.0M     0  5.0M   0% /run/lock
+tmpfs            481M     0  481M   0% /sys/fs/cgroup
+tmpfs            481M  6.1M  475M   2% /tmp
+/dev/mmcblk0p10  1.3G  1.2G  155M  89% /home
+/dev/mmcblk0p7    32M  4.8M   28M  16% /boot
+tmpfs             97M     0   97M   0% /run/user/1002
+```
+
+
 
