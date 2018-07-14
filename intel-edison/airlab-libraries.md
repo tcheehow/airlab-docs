@@ -26,9 +26,13 @@ Using QGroundControl, set the following for companion link
 
 Companion Link, 961200
 
-
-
 For remote editting
 
-http://esthermakes.tech/blog/2015/02/24/remote-text-editing-on-edison-with-atom/
+[http://esthermakes.tech/blog/2015/02/24/remote-text-editing-on-edison-with-atom/](http://esthermakes.tech/blog/2015/02/24/remote-text-editing-on-edison-with-atom/)
+
+For mavros-extras, clone the entire mavros repo and shift only the mavros-extras folder into ~/catkin\_ws/src/
+
+then, edit the CMakeList to remove msg, executable, and build dependencies.
+
+
 
