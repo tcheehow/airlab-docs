@@ -8,4 +8,5 @@
 * [Cartographer](chapter1.md)
 * [MAVROS](mavros.md)
 * [ROS Navigation Stack](ros-navigation-stack.md)
+* [Gazebo](gazebo.md)
 
