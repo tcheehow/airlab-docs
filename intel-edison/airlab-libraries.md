@@ -1,10 +1,10 @@
-# Installing AIRLAB-specific Libraries
+# AIRLAB Libraries
 
 `mkdir ~/catkin_ws/src`
 
 Clone the necessary repository in `~/catkin_ws/src`
 
-```
+```text
 git clone -b <branch-name> https://github.com/tcheehow/air.git
 git clone -b edison https://github.com/tcheehow/mavros.git
 git clone https://github.com/ros/geometry.git
@@ -15,7 +15,7 @@ git clone https://github.com/wjwwood/serial
 
 When completed, run `catkin_make` to build the package.
 
-```
+```text
 wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
 ./install_geographiclib_datasets.sh
 ```
@@ -33,6 +33,4 @@ For remote editting
 For mavros-extras, clone the entire mavros repo and shift only the mavros-extras folder into ~/catkin\_ws/src/
 
 then, edit the CMakeList to remove msg, executable, and build dependencies.
-
-
 

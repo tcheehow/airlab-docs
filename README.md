@@ -1,4 +1,4 @@
-# ODROID-XU4 Setup for MAVROS
+# ODROID Setup
 
 ## Bill of Materials
 
@@ -57,7 +57,7 @@ Follow the instruction on [OpenCV documentation](https://docs.opencv.org/2.4/doc
 
 In Step 2. of the building OpenCV, use cmake with the follow options:
 
-```
+```text
 cmake -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr/local -DWITH_OPENGL=ON -DWITH_V4L=ON -DWITH_TBB=ON -DBUILD_TBB=ON -DENABLE_VFPV3=ON -DENABLE_NEON=ON ..
 ```
 
@@ -78,6 +78,4 @@ ROS, MAVROS and Cartographer each have a workspace, and they need to be sourced 
 ## References
 
 1. [https://mzahana.gitbooks.io/indoor-nav-at-risclab/content/](https://mzahana.gitbooks.io/indoor-nav-at-risclab/content/)
-
-
 

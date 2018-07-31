@@ -1,4 +1,4 @@
-# Cartographer ROS with Gazebo
+# Cartographer
 
 ## Setup
 
@@ -31,7 +31,7 @@ The full list of tunable parameters for low latency can be found on [Cartographe
 
 ### Interpreting Cartographer Output
 
-![](/assets/gazebo-cartographer-px4-rqt.png)Cartographer subscribes to /imu and /scan for map building and trajectory generation. The trajectory is published in /trajectory\__node\_list and the robot pose at a /tf with parent\_frame_\_id: map and child\_frame\_id: base\_link. The robot pose is extracted by listening to the latest /tf.
+![](.gitbook/assets/gazebo-cartographer-px4-rqt.png)Cartographer subscribes to /imu and /scan for map building and trajectory generation. The trajectory is published in /trajectory\__node\_list and the robot pose at a /tf with parent\_frame_\_id: map and child\_frame\_id: base\_link. The robot pose is extracted by listening to the latest /tf.
 
 ### Tuning PX4 Parameters
 

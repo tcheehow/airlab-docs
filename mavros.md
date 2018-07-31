@@ -1,4 +1,4 @@
-# MAVROS and PX4 Flight Stack
+# MAVROS
 
 ## Frame Convention
 
@@ -10,9 +10,9 @@ Position estimates and setpoints are sent using ROS `PoseStamped`messages. The m
 
 The following two-step conversion is important for transforming between body-fixed NED and body-fixed ENU messages.
 
-Ref: https://github.com/mavlink/mavros/blob/22d74d997f42140d21b071d6f5ef9dc54ec7a69a/mavros/src/lib/ftf\_frame\_conversions.cpp
+Ref: [https://github.com/mavlink/mavros/blob/22d74d997f42140d21b071d6f5ef9dc54ec7a69a/mavros/src/lib/ftf\_frame\_conversions.cpp](https://github.com/mavlink/mavros/blob/22d74d997f42140d21b071d6f5ef9dc54ec7a69a/mavros/src/lib/ftf_frame_conversions.cpp)
 
-```
+```text
 /**
  * @brief Static quaternion needed for rotating between ENU and NED frames
  * NED to ENU: +PI/2 rotation about Z (Down) followed by a +PI rotation around X (old North/new East)

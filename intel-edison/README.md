@@ -16,7 +16,7 @@ If Windows is used, dfu-util is required. Download the latest version from this 
 
 Run PowerShell as administrator, execute the following commands
 
-```
+```text
 cd \pathToJubilinux
 .\flashall.sh
 ```
@@ -33,7 +33,7 @@ and login as edison \(password: edison\)
 
 After flashing jubilinux, the filesystem storage should be similar to this
 
-```
+```text
 Filesystem      1K-blocks   Used Available Use% Mounted on
 /dev/root         1441648 247412   1099212  19% /
 devtmpfs           491720      0    491720   0% /dev
@@ -51,7 +51,7 @@ tmpfs               98404      0     98404   0% /run/user/1002
 
 Before proceeding to install ROS, we would need to free up more space on the home partition. To do so, run the following commands as root:
 
-```
+```text
 //make sure you log in as root, do not do this as edison user
 mv /usr/share/ /opt/.usr/
 ln -sf /opt/.usr/ /usr/share
@@ -62,7 +62,7 @@ ln -sf /opt/.usr/ /usr/include
 
 If the process if done correct, perform `ls -l /usr/`and you should see similar results
 
-```
+```text
 root@jubilinux:~# ls -l /usr/
 total 44
 drwxr-xr-x  2 root root  20480 Apr  6  2017 bin
@@ -77,7 +77,7 @@ drwxr-xr-x  2 root root   4096 Jul  7  2014 src
 
 Then, run `df -h` again to see the results of freeing up the partition
 
-```
+```text
 root@jubilinux:~# df -h
 Filesystem       Size  Used Avail Use% Mounted on
 /dev/root        1.4G  499M  817M  38% /
@@ -96,7 +96,7 @@ Also, we would clear space in the root partition, by removing unnecessary docs, 
 
 Add the following to the file `/etc/dpkg/dpkg.cfg` to prevent installing docs, locales and man pages. You can also delete the contents of the folders `sudo rm -rf /usr/share/locale/*`, `sudo rm -rf /usr/share/man/*` and `sudo rm -rf /usr/share/doc/*`.
 
-```
+```text
 # /etc/dpkg/dpkg.conf.d/01_nodoc
 
 # Delete locales
@@ -124,7 +124,7 @@ Run `wpa_passphrase your-ssid your-wifi-password` to generate a secure pks. Then
 
 The final copy should look similar to
 
-```
+```text
 # interfaces(5) file used by ifup(8) and ifdown(8)
 auto lo
 iface lo inet loopback
@@ -146,7 +146,7 @@ iface wlan0 inet dhcp
 
 Modify the sources list at `/etc/apt/sources.list`to become
 
-```
+```text
 deb http://ftp.sg.debian.org/debian jessie main contrib non-free
 #deb-src http://http.debian.net/debian jessie main contrib non-free
 
@@ -161,7 +161,7 @@ deb http://security.debian.org/ jessie/updates main contrib non-free
 deb http://ftp.sg.debian.org/debian jessie-backports main
 ```
 
-```
+```text
 sudo apt-get -y update
 sudo apt-get -y upgrade
 ```
@@ -178,7 +178,7 @@ Logged in as `root`, edit `/etc/rc.local` and comment or uncomment lines as appr
 
 ### Locales
 
-```
+```text
 dpkg-reconfigure locales # Select only en_US.UTF8 and select None as the default on the confirmation page that follows.
 update-locale
 ```
@@ -189,7 +189,7 @@ Note that if you receive warning messages about missing or wrong languages this 
 
 ### Timezone
 
-Edit the config file at `sudo nano /etc/ntp.conf` and change all instance of  `server x.debian.pool.ntp.org` to `server x.sg.pool.ntp.org.`
+Edit the config file at `sudo nano /etc/ntp.conf` and change all instance of `server x.debian.pool.ntp.org` to `server x.sg.pool.ntp.org.`
 
 When done, `sudo dpkg-reconfigure tzdata`
 
@@ -201,7 +201,7 @@ A script \(`ros-setups/intel-edison/install_ros.sh`\) has been writen to automat
 
 The ROS Kinetic instructions from [pennaerial ](https://raw.githubusercontent.com/pennaerial/ros-setups/master/intel-edison/install_kinetic_mavros.sh)works fine. For archival, the working line-by-line script is below:
 
-```
+```text
 # !/bin/bash
 # The following installation is based on: 
 # 1. http://wiki.ros.org/wiki/edison 
@@ -263,7 +263,7 @@ If all went well you should have a ROS installation. Hook your Edison up to the 
 
 After installing ROS, the storage condition on the Edison should be similar to this.
 
-```
+```text
 edison@jubilinux:~/ros_catkin_ws$ df -h
 Filesystem       Size  Used Avail Use% Mounted on
 /dev/root        1.4G 1022M  294M  78% /
@@ -277,6 +277,4 @@ tmpfs            481M  6.1M  475M   2% /tmp
 /dev/mmcblk0p7    32M  4.8M   28M  16% /boot
 tmpfs             97M     0   97M   0% /run/user/1002
 ```
-
-
 
