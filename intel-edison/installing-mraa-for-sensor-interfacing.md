@@ -25,6 +25,7 @@ To install MRAA, follow the instructions from [SparkFun](https://learn.sparkfun.
 
 ```text
 git clone https://github.com/intel-iot-devkit/mraa.git
+git checkout tags/v1.8.0
 mkdir mraa/build && cd $_
 cmake .. -DBUILDSWIGNODE=OFF
 make
