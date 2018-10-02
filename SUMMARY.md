@@ -6,7 +6,8 @@
   * [Clone Edison Base Inage](intel-edison/clone-edison.md)
   * [AIRLAB Libraries](intel-edison/airlab-libraries.md)
 * [Cartographer](chapter1.md)
-* [MAVROS](mavros.md)
+* [MAVROS](mavros/README.md)
+  * [MAVROS\_EXTRAS](mavros/mavros_extras.md)
 * [ROS Navigation Stack](ros-navigation-stack.md)
 * [Monocopter Setup on Gazebo](gazebo.md)
 

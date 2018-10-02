@@ -1,7 +1,3 @@
----
-description: details critical steps and instructions for modelling a monocopter on gazebo.
----
-
 # Monocopter Setup on Gazebo
 
 The instruction is based on Gazebo 7.8.1, and PX4 running on LPE.
