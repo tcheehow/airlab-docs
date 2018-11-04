@@ -1,6 +1,6 @@
 # Intel Edison Setup
 
-## Installing Jubilinux {#installing-jubilinux}
+## Installing Jubilinux <a id="installing-jubilinux"></a>
 
 ### Before Starting
 

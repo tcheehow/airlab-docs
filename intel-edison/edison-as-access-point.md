@@ -12,11 +12,18 @@ DAE_CONF="/etc/hostapd/hostapd.conf"
 
 ```text
 ifdown wlan0
-/etc/init.d/hostapd restart
 ifup wlan0
+systemctl restart hostapd
 ```
 
-3. in `/etc/init.d/hostapd` add `/etc/hostapd/hostapd.conf` to `DAE_CONF`
+3a. 
+
+```text
+systemctl start hostapd
+systemctl enable hostapd
+```
+
+3b. in `/etc/init.d/hostapd` add `/etc/hostapd/hostapd.conf` to `DAE_CONF`
 
 4. in `/etc/network/interfaces`,
 
