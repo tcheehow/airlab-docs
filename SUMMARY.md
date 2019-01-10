@@ -11,4 +11,6 @@
   * [MAVROS\_EXTRAS](mavros/mavros_extras.md)
 * [ROS Navigation Stack](ros-navigation-stack.md)
 * [Monocopter Setup on Gazebo](gazebo.md)
+* [DART-MX6 Ubuntu ROOTFS](ubuntu-rootfs/README.md)
+  * [Troubleshooting](ubuntu-rootfs/troubleshooting.md)
 
