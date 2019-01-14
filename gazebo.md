@@ -2,6 +2,10 @@
 
 The instruction is based on Gazebo 7.8.1, and PX4 running on LPE.
 
+### Installing PX4 with EKF2
+
+Follow the instructions on PX4 developer guide, and install PX4, and SITL. You might need to update cmake if make posix\_sitl\_default fails.
+
 ### Building a Monocopter Model
 
 The `standard_vtol` model is used as a template for building the `monocopter` model. 
