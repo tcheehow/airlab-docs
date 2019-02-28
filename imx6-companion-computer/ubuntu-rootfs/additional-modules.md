@@ -19,5 +19,5 @@ To modify the kernel configuration \(add/remove features and drivers\) please fo
 
 ## Example: CP210x Driver
 
-In `menuconfig`, look for 
+In `menuconfig`, look for Device Drivers -&gt; USB Support -&gt; USB Serial Converters -&gt; CP210x
 
