@@ -96,5 +96,21 @@ Edit `arch/arm/boot/dts/imx6qdl-var-dart.dtsi`, and add the following
 
 To figure what to label within `fsl,pins = < >;` , refer the i.MX 6Dual/6Quad Applications Processor Reference Manual
 
- 
+1. Note the Pin Mux Mode indicated in the DART-MX6 Datasheet. For UART5, the pins need to be muxed to **MODE 4**. 
+
+   ![](../../.gitbook/assets/image.png)
+
+2. Note the pad name referred in the UARTX External Signal. For UART5, the pad for CTS/RTS/RX/TX are **KEY\_ROW4/KEY\_COL4/KEY\_ROW1/KEY\_COL1**. 
+
+   ![](../../.gitbook/assets/image%20%284%29.png)
+
+3. Refer to `src/kernel/arch/arm/boot/dts/imx6q-pinfunc.h`, and find the full name for the UARTX pads. For UART5, the pads are
+4. ```text
+   /* there might be multiple results if you perform a simple search,
+   but use the pad names identified in Step 2 to help spot the correct one */
+   MX6QDL_PAD_KEY_ROW1__UART5_RX_DATA
+   MX6QDL_PAD_KEY_COL1__UART5_TX_DATA
+   MX6QDL_PAD_KEY_ROW4__UART5_CTS_B
+   MX6QDL_PAD_KEY_COL4__UART5_RTS_B
+   ```
 
