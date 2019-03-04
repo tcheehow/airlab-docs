@@ -18,4 +18,5 @@
     * [Additional Modules](imx6-companion-computer/ubuntu-rootfs/additional-modules.md)
     * [Troubleshooting](imx6-companion-computer/ubuntu-rootfs/troubleshooting.md)
   * [Untitled](imx6-companion-computer/untitled.md)
+* [STM32 as Black Magic Probe](stm32-as-black-magic-probe.md)
 
