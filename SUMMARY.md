@@ -19,4 +19,6 @@
     * [Troubleshooting](imx6-companion-computer/ubuntu-rootfs/troubleshooting.md)
   * [Untitled](imx6-companion-computer/untitled.md)
 * [STM32 as Black Magic Probe](stm32-as-black-magic-probe.md)
+* [Neutis N5 Setup](neutis-n5-setup/README.md)
+  * [Linux Configuration](neutis-n5-setup/linux-configuration.md)
 
