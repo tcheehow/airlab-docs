@@ -98,11 +98,11 @@ To figure what to label within `fsl,pins = < >;` , refer the i.MX 6Dual/6Quad Ap
 
 1. Note the Pin Mux Mode indicated in the DART-MX6 Datasheet. For UART5, the pins need to be muxed to **MODE 4**. 
 
-   ![](../../.gitbook/assets/image.png)
+   ![](../../.gitbook/assets/image%20%283%29.png)
 
 2. Note the pad name referred in the UARTX External Signal. For UART5, the pad for CTS/RTS/RX/TX are **KEY\_ROW4/KEY\_COL4/KEY\_ROW1/KEY\_COL1**. 
 
-   ![](../../.gitbook/assets/image%20%284%29.png)
+   ![](../../.gitbook/assets/image%20%282%29.png)
 
 3. Refer to `src/kernel/arch/arm/boot/dts/imx6q-pinfunc.h`, and find the full name for the UARTX pads. For UART5, the pads are
 4. ```text
